@@ -4,7 +4,6 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 
 const POSTGRES_URL = 'postgresql://postgres:n3nH0qB3hzYocml2WVIp@containers-us-west-127.railway.app:6229/railway';
-
 const sequelizeOption = {
     dialectOptions: {
         ssl: {
@@ -15,6 +14,7 @@ const sequelizeOption = {
 }
 
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
+const User = require('./user')(sequelize, DataTypes);
 
 sequelize.authenticate().then(() => {
     console.log("Database connected to postgres");
@@ -25,4 +25,5 @@ sequelize.authenticate().then(() => {
 
 module.exports = {
     db: sequelize,
+    User:User,
 };
