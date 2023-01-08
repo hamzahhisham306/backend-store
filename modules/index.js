@@ -15,7 +15,7 @@ const sequelizeOption = {
 
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
 const User = require('./user')(sequelize, DataTypes);
-
+const product = require('./products')(sequelize, DataTypes);
 sequelize.authenticate().then(() => {
     console.log("Database connected to postgres");
 }).catch((err) => {
@@ -26,4 +26,5 @@ sequelize.authenticate().then(() => {
 module.exports = {
     db: sequelize,
     User:User,
+    Product:product
 };
