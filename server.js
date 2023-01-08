@@ -4,15 +4,17 @@ const express=require('express');
 const cors=require('cors');
 const app=express();
 const user=require('./routes/user');
+const products=require('./routes/products');
 app.use(cors());
 app.use(express.json());
 app.use(user);
-
+app.use(products);
 app.get('/',(req,res)=>{
     res.status(200).send({
         message:'Home Page'
     });
 });
+
 
 function start(Port){
     app.listen(Port, ()=>{
