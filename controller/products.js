@@ -59,8 +59,27 @@ const getById =async(req,res)=>{
     console.log(error);
   }
 }
+const deleteProduct = async(req,res)=>{
+  try {
+      const id=req.params.id;
+      const deleteProduct = await Product.destroy({where:{id:id}});
+      res.status(200).send(deleteProduct);
+  } catch (error) {
+    console.log(error);
+  }
+}
+const createNewProduct = async(req,res)=>{
+  try {
+     const newProdcut = await Product.create(req.body);
+     res.status(200).send(newProdcut);
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
   getProducts,
   getAll,
-  getById
+  getById,
+  deleteProduct,
+  createNewProduct
 }
