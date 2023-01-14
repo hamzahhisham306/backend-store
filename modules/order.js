@@ -10,7 +10,27 @@ module.exports=(sequelize, DataTypes)=>{
         prdunctId:{
             type: DataTypes.ARRAY(DataTypes.INTEGER),
             allowNull: true
-        }
+        },
+        name:{
+            type:DataTypes.STRING,
+            allowNull:false,
+        },
+       email:{
+         type:DataTypes.STRING,
+         allowNull:false,
+       },
+       address:{
+          type:DataTypes.STRING,
+          allowNull:false,
+       },
+       phone:{
+        type:DataTypes.STRING,
+        allowNull:false
+       },
+       totalPrice:{
+        type:DataTypes.FLOAT,
+        allowNull:false
+       },
     })
     return Order;
 }
