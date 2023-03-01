@@ -36,7 +36,6 @@ try {
     const check = await brcypt.compare(password,user.password);
     if(check){
         res.status(200).send(user);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.',check)        
     }
     else{
         res.status(401).send('the password is not coorrect');

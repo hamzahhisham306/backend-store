@@ -3,7 +3,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 
-const POSTGRES_URL = 'postgresql://postgres:n3nH0qB3hzYocml2WVIp@containers-us-west-127.railway.app:6229/railway';
+const POSTGRES_URL = 'postgres://hamzah_user:p2Tm8MfwMEuczoMNBE8sH45exEpQlLbF@dpg-cfuhat9gp3jl07eomv30-a.oregon-postgres.render.com/hamzah';
 const sequelizeOption = {
     dialectOptions: {
         ssl: {
@@ -17,12 +17,18 @@ let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
 const User = require('./user')(sequelize, DataTypes);
 const product = require('./products')(sequelize, DataTypes);
 const Order =require('./order')(sequelize, DataTypes);
+const item =require('./item')(sequelize, DataTypes);
+const favorite =require('./favorite')(sequelize, DataTypes);
 
 User.hasMany(Order, {forignKey:'userId', primaryKey:'id'});
 Order.belongsTo(User, {forignKey: 'userId', targetKey: 'id'});
 
 
+User.hasMany(item,{foreignKey:'useritemID', sourceKey:'id'});
+item.belongsTo(User,{foreignKey:'useritemID', targetKey:'id'});
 
+User.hasMany(favorite,{foreignKey:'UserfavoriteId',sourceKey:'id'});
+favorite.belongsTo(User,{foreignKey:'UserfavoriteId',targetKey:'id'})
 
 
 
@@ -37,6 +43,8 @@ sequelize.authenticate().then(() => {
 module.exports = {
     db: sequelize,
     User:User,
+    item:item,
     Product:product,
-    Order:Order
+    Order:Order,
+    favorite:favorite
 };
