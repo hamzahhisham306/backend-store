@@ -1,1 +1,1 @@
-# fruits-store
+# backend-store
